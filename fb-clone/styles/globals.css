@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+
+    .icon {
+        @apply hidden xl:inline-flex p-2 h-10 rounded-full text-gray-600 cursor-pointer hover:bg-gray-300;
+    }
+
+    .icon-messanger {
+        @apply hidden xl:inline-flex p-2 h-10 w-10 text-blue-600 cursor-pointer transition duration-200 transform hover:scale-125;
+    }
+
+    .inputIcon {
+        @apply flex items-center mx-2 md:mx-10 space-x-1 hover:bg-gray-100 flex-grow justify-center p-2 rounded-xl cursor-pointer;
+    }
+
+    .view-img {
+        @apply h-36 w-32 rounded-md m-2 cursor-pointer transition duration-200 transform ease-in hover:scale-105 ;
+    }
+}
+
+.circle-img{
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+}
+
+.login-card {
+    background: rgba( 255, 255, 255, 0.5 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
+}
+
+.login-bg{
+    background: rgb(9,9,121);
+background: linear-gradient(14deg, rgba(9,9,121,1) 23%, rgba(0,212,255,1) 73%, rgba(255,255,255,1) 100%);
+}
