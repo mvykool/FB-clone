@@ -18,7 +18,7 @@ function InputBox() {
   return (
     <div className='bg-white p-4 rounded-md text-gray-500 font-medium mt-6'>
       <div className="flex">
-      <Image
+      <img
             className='rounded-full m-5'
           
             width={50}

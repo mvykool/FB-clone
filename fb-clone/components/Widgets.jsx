@@ -72,7 +72,7 @@ const Widgets = () => {
           </div>
         </div>
         
-        <Image
+        <img
         className='rounded-md mb-10 cursor-pointer'
         src="/events.jpg"
         height={400}
