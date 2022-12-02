@@ -1,6 +1,8 @@
 import Head from 'next/head'
+import Feed from '../components/Feed'
 import Header from '../components/Header'
 import SideBar from '../components/Sidebar'
+import Widgets from '../components/Widgets'
 
 
 
@@ -19,9 +21,9 @@ export default function Home({ posts }) {
         {/** side bar */}
       <SideBar/>
         {/**feed */}
-
+      <Feed/>
         {/** widgets */}
-      
+      <Widgets/>
        </main>
     </div>
   )

@@ -1,6 +1,5 @@
 import React from 'react'
 import InputBox from './InputBox'
-import Posts from './Posts'
 import Stories from './Stories'
 
 const Feed = ({ posts}) => {
@@ -10,7 +9,7 @@ const Feed = ({ posts}) => {
             {/**feed */}
             <Stories/>
             {/**input box */}
-           
+            <InputBox/>
             {/**posts */}
          
         </div>
