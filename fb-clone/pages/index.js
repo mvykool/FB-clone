@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/Header'
+import SideBar from '../components/Sidebar'
 
 
 
@@ -16,7 +17,7 @@ export default function Home({ posts }) {
 
        <main className='flex'>
         {/** side bar */}
-  
+      <SideBar/>
         {/**feed */}
 
         {/** widgets */}
