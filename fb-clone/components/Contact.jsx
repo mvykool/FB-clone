@@ -6,8 +6,8 @@ const Contact = ({ src, name}) => {
     <div className='flex items-center space-x-3 mb-2 relative hover:bg-gray-200 cursor-pointer p-2 rounded-xl'>
         <img
         className='circle-img border-separate border-blue-600 border-2 p-0.5 border-spacing-1 '
-        objectFit="cover"
         src={src}
+        alt="pic"
         name={name}
         height={50}
         width={50}

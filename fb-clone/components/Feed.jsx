@@ -12,7 +12,7 @@ const Feed = ({ posts}) => {
             {/**input box */}
             <InputBox/>
             {/**posts */}
-          <Posts/>
+          <Posts posts={posts} />
         </div>
     </div>
   )

@@ -20,14 +20,18 @@ import { BsMessenger } from 'react-icons/bs'
 
 
 
-
+//auth
+import {auth} from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 
 
 const Header = () => {
 
    
+  const [user] = useAuthState(auth)
 
+  console.log(user)
 
   return (
     <div className='sticky top-0 z-50 bg-white flex items-center p-2 lg:px-5 lg:pt-7'>
@@ -36,7 +40,7 @@ const Header = () => {
          <div 
          className='flex items-center'
          >
-            <Image
+            <img
             src="/logo.png"
             width={40}
             height={40}
@@ -78,9 +82,9 @@ const Header = () => {
 
             {/**profile pic */}
        <div className='flex items-center border-l p-2'>
-       <Image
-            onClick={() => signOut()}
-         
+       <img
+            src={user.photoURL}
+            alt="pic"
             height="40"
             width="40"
             className="rounded-full cursor-pointer mx-2"
@@ -88,7 +92,7 @@ const Header = () => {
             
             />
 
-            <p className='hidden lg:block whitespace-nowrap font-semibold pr-3'>maicol</p>
+            <p className='hidden lg:block whitespace-nowrap font-semibold pr-3'>{user.displayName}</p>
        </div>
 
             <ChevronDownIcon className='icon'/>

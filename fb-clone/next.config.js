@@ -11,6 +11,7 @@ module.exports = {
       "links.papareact.com",
       "platform-lookaside.fbsbx.com",
       "firebasestorage.googleapis.com",
+      "https://lh3.googleusercontent.com"
     ],
    },
 };

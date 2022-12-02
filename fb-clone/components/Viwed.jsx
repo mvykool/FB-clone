@@ -12,10 +12,10 @@ const Viwed = () => {
         </div>
 
         <div className='grid grid-cols-2 p-4'>
-          <Image src="/view-one.jpg" height={100} width={100} className="view-img"/>
-          <Image src="/view-two.jpg" height={100} width={100} className="view-img"/>
-          <Image src="/view-three.jpg" height={100} width={100} className="view-img"/>
-          <Image src="/view-four.jpg" height={100} width={100} className="view-img"/>
+          <img   alt="pic" src="/view-one.jpg" height={100} width={100} className="view-img"/>
+          <img   alt="pic" src="/view-two.jpg" height={100} width={100} className="view-img"/>
+          <img   alt="pic" src="/view-three.jpg" height={100} width={100} className="view-img"/>
+          <img   alt="pic" src="/view-four.jpg" height={100} width={100} className="view-img"/>
         </div>
     </div>
   )

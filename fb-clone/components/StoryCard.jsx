@@ -7,14 +7,15 @@ const StoryCard = ({ name, src, profile }) => {
         <img
         className='absolute opacity-0 lg:opacity-100 rounded-full z-50 top-4 circle-img md:border-2 p-0.5 md:border-separate md:border-spacing-1 md:border-blue-600' 
         src={profile}
+        alt="pic"
         width={40}
         height={40}
         layout="fixed"
-        objecFit="cover"
         />
         <img
         className='object-cover brightness-75 rounded-full md:rounded-md'
         src={src}
+        alt="pic"
         layout="fill"
         />
         <p className='opacity-0 lg:opacity-100 md:absolute bottom-2 text-white flex text-sm'>{name}</p>

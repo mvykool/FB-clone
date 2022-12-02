@@ -2,20 +2,34 @@ import Image from 'next/image'
 import React from 'react'
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from '@heroicons/react/outline'
 
+
+
+//auth
+import {auth} from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+
+
 const Post = ({ name, message, email, postImage, image, timestamp}) => {
+
+ 
+  const [user] = useAuthState(auth)
+
+
   return (
     <div className='flex flex-col'>
       <div className='p-5 bg-white mt-5 rounded-t-md'>
         <div className='flex items-center space-x-3'>
             <img
+            src={user.photoURL}
             className='rounded-full'
             height={50}
             width={50}
+            
           
             alt="profile-pic"
             />
             <div>
-                <p className='font-medium'>Maicol</p>
+                <p className='font-medium'>{user.displayName}</p>
 
                 {timestamp ? (
                   <p className='text-xs text-gray-400'>
@@ -32,7 +46,7 @@ const Post = ({ name, message, email, postImage, image, timestamp}) => {
       </div>
       {postImage && (
          <div className='relative p-4 h-56 md:h-96 bg-white'>
-            <img objectFit="contain" layout="fill" />
+            <img objectFit="contain" layout="fill"   alt="pic"/>
          </div>
       )}
 

@@ -75,6 +75,7 @@ const Widgets = () => {
         <img
         className='rounded-md mb-10 cursor-pointer'
         src="/events.jpg"
+        alt="pic"
         height={400}
         width={400}
         />

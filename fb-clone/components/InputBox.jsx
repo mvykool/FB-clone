@@ -6,13 +6,19 @@ import { GiEarthAmerica } from 'react-icons/gi'
 import {BsCaretDownFill} from 'react-icons/bs'
 import { DotsHorizontalIcon } from '@heroicons/react/solid'
 
+
+//auth
+import {auth} from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+
 function InputBox() {
 
   const inputRef = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
   const filepickerRef = useRef(null);
 
-  
+   
+  const [user] = useAuthState(auth)
 
 
   return (
@@ -20,13 +26,13 @@ function InputBox() {
       <div className="flex">
       <img
             className='rounded-full m-5'
-          
+            src={user.photoURL}
             width={50}
             height={50}
             layout="fixed"
             />
             <div className="cursor-pointer">
-            <p className="mt-5 text-black font-bold mb-1">Maicol</p>
+            <p className="mt-5 text-black font-bold mb-1">{user.displayName}</p>
            <div className="flex items-center space-x-1 text-sm">
            <GiEarthAmerica/>
            <p>Public</p>
@@ -41,7 +47,7 @@ function InputBox() {
                 className='rounded-full placeholder-gray-300 text-sm lg:text-2xl h-20 flex-grow lg:mx-24 mt-2 focus:outline-none'
                 type="text"
                 ref={inputRef}
-                placeholder="What's on your mind?"
+                placeholder={`What's on your mind, ${user.displayName}?`}
                 />
                 <button hidden type="submit" >Submit</button>
             </form>

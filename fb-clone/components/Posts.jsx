@@ -8,13 +8,10 @@ const Posts = ({ posts }) => {
     <div>
     
             <Post
-          
+        
             />
     
-        
-          <Post
-           
-            />
+       
          
         
     </div>
