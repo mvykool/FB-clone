@@ -5,16 +5,35 @@ import { ChatAltIcon, ShareIcon, ThumbUpIcon } from '@heroicons/react/outline'
 
 
 //auth
-import {auth} from '../firebase'
+import {auth, db} from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { deleteField} from "firebase/firestore"; 
 
 
-const Post = ({  message, img, timestamp}) => {
+const Post = ({  message, img, timestamp, id, setPosts, post}) => {
 
  
   const [user] = useAuthState(auth)
 
+  console.log(post.id)
 
+  //delete 
+
+const deletePost = () => {
+  const docRef = doc(db, `posts/${id}`);
+
+deleteDoc(docRef)
+.then(() => {
+  console.log("Entire Document has been deleted successfully.")
+})
+.catch(error => {
+  console.log(error);
+})
+
+}
+
+ 
   return (
     <div className='flex flex-col'>
       <div className='p-5 bg-white mt-5 rounded-t-md'>
@@ -40,6 +59,7 @@ const Post = ({  message, img, timestamp}) => {
                 )
                 }
             </div>
+            <button type='button' onClick={deletePost} >delete</button>
         </div>
 
         <p className='pt-10 mx-2 xl:mx-20 xl:text-xl mb-2'>{message}</p>

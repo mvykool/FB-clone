@@ -3,7 +3,10 @@ import React, {useState, useEffect} from 'react'
 import { db } from '../firebase';
 import Post from './Post'
 
+
+
 const Posts = () => {
+
 
 
 // state 
@@ -20,21 +23,28 @@ const [posts, setPosts ] = useState([]);
    return unsubscribe;
  }, [db])
 
- console.log(posts.data)
+
+
+
+
 
   return (
     <div>
         {/**post */}
         {posts.map((post) => (
+        <>
            <Post 
            key={post.id}
            id={post.id}
+           post={post}
+           setPosts={setPosts}
            username={post.data().username}
            userImg={post.data().profileImg}
            img={post.data().postImage}
            message={post.data().message}
            timestamp={post.data().timestamp}
            />
+           </>
         ))}
     </div>
   )
