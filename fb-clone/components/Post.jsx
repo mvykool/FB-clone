@@ -75,7 +75,7 @@ setEdit(false)
             alt="profile-pic"
             />
             <div>
-                <p className='font-medium'>{user.displayName}</p>
+                <p className='font-medium'>{user.displayName ? user.displayName : "Demo User"}</p>
 
                 {timestamp ? (
                   <p className='text-xs text-gray-400'>

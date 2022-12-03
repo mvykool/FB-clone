@@ -94,10 +94,7 @@ const Header = () => {
             
             />
 
-         
-
-
-            <p className='hidden lg:block whitespace-nowrap font-semibold pr-3'>{user.displayName}</p>
+            <p className='hidden lg:block whitespace-nowrap font-semibold pr-3'>{user.displayName ? user.displayName : "Demo User"}</p>
        </div>
         </div>
         <SignOut/>

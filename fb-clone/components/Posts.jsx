@@ -23,10 +23,6 @@ const [posts, setPosts ] = useState([]);
  }, [db])
 
 
-
-
-
-
   return (
     <div>
         {/**post */}

@@ -25,6 +25,7 @@ function InputBox() {
 
   const uploadPost = async (e) => {
     e.preventDefault();
+    
 
     if (!inputRef.current.value) return;
 
@@ -35,10 +36,9 @@ function InputBox() {
     image: user.photoURL,
     timestamp: serverTimestamp(),
    })
-
+   inputRef.current.value = "";
 
    if(!imageToPost) return    
-  
 
     const imageRef = ref(storage,`posts/${docRef.id}/image`);
 
@@ -84,7 +84,7 @@ function InputBox() {
             layout="fixed"
             />
             <div className="cursor-pointer">
-            <p className="mt-5 text-black font-bold mb-1">{user.displayName}</p>
+            <p className="mt-5 text-black font-bold mb-1">{user.displayName ? user.displayName : "Demo User"}</p>
            <div className="flex items-center space-x-1 text-sm">
            <GiEarthAmerica/>
            <p>Public</p>
@@ -94,7 +94,7 @@ function InputBox() {
       </div>
         <div className='flex space-x-4 items-center'>
            
-            <form className='flex flex-1'>
+            <form onSubmit={uploadPost} className='flex flex-1'>
                 <input
                 className='rounded-full placeholder-gray-300 text-sm lg:text-2xl h-20 flex-grow lg:mx-24 mt-2 focus:outline-none'
                 value={inputVal}
@@ -105,13 +105,17 @@ function InputBox() {
                 />
                 <button hidden type="submit" >Submit</button>
             </form>
-            { imageToPost && (
+          
+            <div className="flex-col">
+            <div>
+           { imageToPost && (
                 <div onClick={removeImage}  className="flex flex-col filter hover:brightness-110 transition
-                 duration-150 transform hover:scale-105 cursor-pointer">
+                 duration-150 transform hover:scale-105 cursor-pointer -ml-5">
                     <img className='h-10 object-contain rounded-md' src={imageToPost} alt="image" />
                     <p className='text-xs text-red-500 text-center'>Remove</p>
                 </div>
             )}
+           </div>
             <div className='mt-5 sm:mt-6'>
             <button type='button' 
                 onClick={uploadPost}
@@ -120,6 +124,9 @@ function InputBox() {
                 Submit
               </button>
             </div>
+            </div>
+
+
         </div>
             
         {/**mobile button */}
