@@ -18,6 +18,7 @@ function InputBox() {
 
   const [user] = useAuthState(auth)
 
+  const [inputVal, setInputVal] = useState("");
   const inputRef = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
   const filepickerRef = useRef(null);
@@ -96,6 +97,8 @@ function InputBox() {
             <form className='flex flex-1'>
                 <input
                 className='rounded-full placeholder-gray-300 text-sm lg:text-2xl h-20 flex-grow lg:mx-24 mt-2 focus:outline-none'
+                value={inputVal}
+                onChange={e => setInputVal(e.target.value)}
                 type="text"
                 ref={inputRef}
                 placeholder={`What's on your mind, ${user.displayName}?`}
@@ -114,7 +117,7 @@ function InputBox() {
         <div className='mt-5 sm:mt-6'>
             <button type='button' 
                 onClick={uploadPost}
-                disabled={inputRef === null}
+                disabled={!inputVal}
                 className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-red-500 sm:text.sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
                 upload
               </button>
