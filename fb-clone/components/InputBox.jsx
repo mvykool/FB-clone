@@ -101,7 +101,7 @@ function InputBox() {
                 onChange={e => setInputVal(e.target.value)}
                 type="text"
                 ref={inputRef}
-                placeholder={`What's on your mind, ${user.displayName}?`}
+                placeholder={`What's on your mind, ${user.displayName ? user.displayName : "Demo user"}?`}
                 />
                 <button hidden type="submit" >Submit</button>
             </form>
