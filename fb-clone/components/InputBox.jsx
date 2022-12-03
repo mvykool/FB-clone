@@ -78,7 +78,7 @@ function InputBox() {
       <div className="flex">
       <img
             className='rounded-full m-5'
-            src={user.photoURL}
+            src={user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/6073/6073873.png" }
             width={50}
             height={50}
             layout="fixed"

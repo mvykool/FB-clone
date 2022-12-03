@@ -40,13 +40,13 @@ const Stories = () => {
         >
           <PlusIcon className='object-cover  rounded-full w-5 h-5 text-blue-600 '/>
         </div>
-        <img
+        <Image
         alt='pic'
-        className='object-cover brightness-75 rounded-full md:rounded-md'
+        className='object-cover  brightness-75 lg:h-52 rounded-full md:rounded-md'
         src="/default-story.jpg"
         layout="fill"
         />
-        <p className='opacity-0 lg:opacity-100  md:absolute bottom-2 text-white flex text-sm'>add story</p>
+        <p className='opacity-0 lg:opacity-100 p-2 md:absolute bottom-2 text-white flex text-sm'>add story</p>
     </div>
       {stories.map( story => (
         <StoryCard 

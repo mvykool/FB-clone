@@ -66,7 +66,7 @@ setEdit(false)
       <div className='p-5 bg-white mt-5 rounded-t-md'>
         <div className='flex items-center space-x-3'>
             <img
-            src={user.photoURL}
+            src={user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/6073/6073873.png" }
             className='rounded-full'
             height={50}
             width={50}
@@ -91,9 +91,11 @@ setEdit(false)
         <div className='flex items-center justify-between'>
         <p className='pt-10 mx-2 xl:mx-20 xl:text-xl mb-2'>{message}</p>
        <div className='-mt-20  space-y-4'>
-       <RiDeleteBinLine onClick={deletePost} className='text-red-500 cursor-pointer hover:scale-125 h-7 w-7'/>
+       {edit ? false : <>
+        <RiDeleteBinLine onClick={deletePost} className='text-red-500 cursor-pointer hover:scale-125 h-7 w-7'/>
         <FiEdit2 onClick={() => setEdit(true)} className='h-5 w-5 text-gray-400 hover:scale-125  cursor-pointer'/>
 
+       </>}
         {/**edit field */}
 
         {edit ?  

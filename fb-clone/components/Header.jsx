@@ -82,8 +82,10 @@ const Header = () => {
 
             {/**profile pic */}
        <div className='flex items-center border-l p-2'>
-       <img
-            src={user.photoURL}
+      
+      
+         <img
+            src={user.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/512/6073/6073873.png" }
             alt="pic"
             height="40"
             width="40"
@@ -91,6 +93,9 @@ const Header = () => {
             layout="fixed"
             
             />
+
+         
+
 
             <p className='hidden lg:block whitespace-nowrap font-semibold pr-3'>{user.displayName}</p>
        </div>
