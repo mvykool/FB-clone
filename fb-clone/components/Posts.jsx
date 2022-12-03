@@ -4,7 +4,6 @@ import { db } from '../firebase';
 import Post from './Post'
 
 
-
 const Posts = () => {
 
 

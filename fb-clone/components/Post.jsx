@@ -1,14 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from '@heroicons/react/outline'
-
-
+import {RiDeleteBinLine} from 'react-icons/ri'
 
 //auth
 import {auth, db} from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
-import { deleteField} from "firebase/firestore"; 
+import { deleteDoc, doc } from 'firebase/firestore'
+
 
 
 const Post = ({  message, img, timestamp, id, setPosts, post}) => {
@@ -59,10 +58,12 @@ deleteDoc(docRef)
                 )
                 }
             </div>
-            <button type='button' onClick={deletePost} >delete</button>
         </div>
-
+      
+        <div className='flex items-center justify-between'>
         <p className='pt-10 mx-2 xl:mx-20 xl:text-xl mb-2'>{message}</p>
+        <RiDeleteBinLine className='text-red-500 cursor-pointer hover:scale-125 -mt-36 mr-2 h-7 w-7'/>
+        </div>
       </div>
       {img && (
          <div className='relative p-4 h-56 md:h-96 bg-white'>
