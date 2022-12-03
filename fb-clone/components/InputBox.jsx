@@ -10,15 +10,66 @@ import { DotsHorizontalIcon } from '@heroicons/react/solid'
 //auth
 import {auth} from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { storage, db } from '../firebase'
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
+import { ref, getDownloadURL, uploadString } from 'firebase/storage'
 
 function InputBox() {
+
+  const [user] = useAuthState(auth)
 
   const inputRef = useRef(null);
   const [imageToPost, setImageToPost] = useState(null);
   const filepickerRef = useRef(null);
 
-   
-  const [user] = useAuthState(auth)
+  const uploadPost = async (e) => {
+    e.preventDefault();
+
+    if (!inputRef.current.value) return;
+
+   const docRef = await addDoc(collection(db, "posts"), {
+    message: inputRef.current.value,
+    name: user.displayName,
+    email: user.email,
+    image: user.photoURL,
+    timestamp: serverTimestamp(),
+   })
+
+
+   if(!imageToPost) return    
+  
+
+    const imageRef = ref(storage,`posts/${docRef.id}/image`);
+
+        await uploadString(imageRef, imageToPost, "data_url").then(async snapshot => {
+          const downloadURL = await getDownloadURL(imageRef);
+          await updateDoc(doc(db, "posts", docRef.id), {
+            postImage: downloadURL
+        })
+    });
+
+        
+    inputRef.current.value = "";
+    setImageToPost(null)
+  };
+
+  const addImageToPost = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setImageToPost(readerEvent.target.result);
+    };
+  };
+
+  
+
+  const removeImage = () => {
+    setImageToPost(null);
+  };
+
 
 
   return (
@@ -51,14 +102,23 @@ function InputBox() {
                 />
                 <button hidden type="submit" >Submit</button>
             </form>
-            {imageToPost && (
-                <div onClick={removeImage} className="flex flex-col filter hover:brightness-110 transition
+            { imageToPost && (
+                <div onClick={removeImage}  className="flex flex-col filter hover:brightness-110 transition
                  duration-150 transform hover:scale-105 cursor-pointer">
                     <img className='h-10 object-contain rounded-md' src={imageToPost} alt="image" />
                     <p className='text-xs text-red-500 text-center'>Remove</p>
                 </div>
             )}
         </div>
+
+        <div className='mt-5 sm:mt-6'>
+            <button type='button' 
+                onClick={uploadPost}
+                disabled={inputRef === null}
+                className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-red-500 sm:text.sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
+                upload
+              </button>
+            </div>
 
         <div className='flex flex-wrap p-2 justify-evenly border-t'>
             <div className='inputIcon'>
@@ -71,7 +131,7 @@ function InputBox() {
             className='inputIcon'>
              <CameraIcon className='h-4 md:h-7  text-green-400'/>
              <p className='text-xs sm:text-sm'>Photo/Video</p>
-             <input ref={filepickerRef} type="file" hidden />
+             <input onChange={addImageToPost} ref={filepickerRef} type="file" hidden />
             </div>
 
             <div className='inputIcon'>

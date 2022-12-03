@@ -9,7 +9,7 @@ import {auth} from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 
-const Post = ({ name, message, email, postImage, image, timestamp}) => {
+const Post = ({  message, img, timestamp}) => {
 
  
   const [user] = useAuthState(auth)
@@ -42,11 +42,11 @@ const Post = ({ name, message, email, postImage, image, timestamp}) => {
             </div>
         </div>
 
-        <p className='pt-10 mx-2 xl:mx-20 xl:text-xl mb-2'>gola</p>
+        <p className='pt-10 mx-2 xl:mx-20 xl:text-xl mb-2'>{message}</p>
       </div>
-      {postImage && (
+      {img && (
          <div className='relative p-4 h-56 md:h-96 bg-white'>
-            <img objectFit="contain" layout="fill"   alt="pic"/>
+            <Image src={img} objectFit="contain" layout="fill"   alt="pic"/>
          </div>
       )}
 

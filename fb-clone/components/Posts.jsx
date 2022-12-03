@@ -20,6 +20,7 @@ const [posts, setPosts ] = useState([]);
    return unsubscribe;
  }, [db])
 
+ console.log(posts.data)
 
   return (
     <div>
@@ -28,8 +29,11 @@ const [posts, setPosts ] = useState([]);
            <Post 
            key={post.id}
            id={post.id}
-           img={post.data().image}
-           caption={post.data().caption}
+           username={post.data().username}
+           userImg={post.data().profileImg}
+           img={post.data().postImage}
+           message={post.data().message}
+           timestamp={post.data().timestamp}
            />
         ))}
     </div>
