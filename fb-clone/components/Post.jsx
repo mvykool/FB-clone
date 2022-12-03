@@ -1,17 +1,22 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useRef, useState} from 'react'
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from '@heroicons/react/outline'
 import {RiDeleteBinLine} from 'react-icons/ri'
+import { FiEdit2 } from 'react-icons/fi'
 
 //auth
 import {auth, db} from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { deleteDoc, doc } from 'firebase/firestore'
+import { deleteDoc, doc, updateDoc  } from 'firebase/firestore'
 
 
 
 const Post = ({  message, img, timestamp, id, setPosts, post}) => {
 
+  //edit ref
+
+  const editRef = useRef();
+  const [edit, setEdit] = useState(false)
  
   const [user] = useAuthState(auth)
 
@@ -31,6 +36,29 @@ deleteDoc(docRef)
 })
 
 }
+
+//edit 
+
+
+const editPost = (e) => {
+  const docRef = doc(db, `posts/${id}`);
+
+  const data = {
+    message: editRef.current.value,
+  }
+
+  updateDoc(docRef, data)
+.then(docRef => {
+    console.log("Value of an Existing Document Field has been updated");
+})
+.catch(error => {
+    console.log(error);
+})
+
+setEdit(false)
+
+}
+
 
  
   return (
@@ -62,7 +90,31 @@ deleteDoc(docRef)
       
         <div className='flex items-center justify-between'>
         <p className='pt-10 mx-2 xl:mx-20 xl:text-xl mb-2'>{message}</p>
-        <RiDeleteBinLine className='text-red-500 cursor-pointer hover:scale-125 -mt-36 mr-2 h-7 w-7'/>
+       <div className='-mt-20  space-y-4'>
+       <RiDeleteBinLine onClick={deletePost} className='text-red-500 cursor-pointer hover:scale-125 h-7 w-7'/>
+        <FiEdit2 onClick={() => setEdit(true)} className='h-5 w-5 text-gray-400 hover:scale-125  cursor-pointer'/>
+
+        {/**edit field */}
+
+        {edit ?  
+        <div>
+          <form className=' bg-blue-500 left-[20%] z-50 xl:left-[40vw] xl:p-10 fixed p-5 rounded-md top-96'>
+            <input
+            type="text"
+            ref={editRef}
+            placeholder='edit'
+            className='xl:h-20 xl:w-80 h-10 rounded-md outline-none pl-2'
+            />
+            <div className='flex justify-around mt-4'>
+            <button onClick={editPost} className='text-blue-500 bg-white py-2 px-4 rounded-md'>Edit</button>
+            <button onClick={() => setEdit(false)} className='text-blue-500 bg-white py-2 px-4 rounded-md'>Close</button>
+            </div>
+          </form>
+        </div>
+           : false}
+
+
+       </div>
         </div>
       </div>
       {img && (

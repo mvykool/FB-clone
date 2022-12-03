@@ -3,7 +3,6 @@ import React from 'react'
 import {
     BellIcon,
     SupportIcon,
-    ChevronDownIcon,
     HomeIcon,
     ViewGridIcon,
 } from "@heroicons/react/solid";
@@ -23,6 +22,7 @@ import { BsMessenger } from 'react-icons/bs'
 //auth
 import {auth} from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import SignOut from './SignOut';
 
 
 
@@ -62,7 +62,7 @@ const Header = () => {
          </div> 
         {/**center */}
          <div className='flex justify-center flex-grow'>
-            <div className='flex space-x-6 md:space-x-2'>
+            <div className='hidden md:flex space-x-6 md:space-x-2'>
                 <HeaderIcon active Icon={HomeIcon} />
                 <HeaderIcon Icon={ViewGridIcon}/>
                 <HeaderIcon Icon={PlayIcon}/>
@@ -74,10 +74,10 @@ const Header = () => {
         <div className='flex items-center sm:space-x-3 justify-end'>
           
            <SupportIcon className='icon'/>
-            <BsMessenger className='icon-messanger'/>
+            <BsMessenger className='inline icon-messanger'/>
            <div>
-           <div className='hidden xl:block h-2.5 w-2.5 absolute bg-red-500 rounded-full ml-6 mt-1'/>
-            <BellIcon className='icon'/>
+           <div className=' xl:block h-2.5 w-2.5 absolute bg-red-500 rounded-full ml-6 mt-1'/>
+            <BellIcon className='inline icon'/>
            </div>
 
             {/**profile pic */}
@@ -87,16 +87,15 @@ const Header = () => {
             alt="pic"
             height="40"
             width="40"
-            className="rounded-full cursor-pointer mx-2"
+            className="rounded-full cursor-pointer mx-2 transition duration-150 hover:scale-110"
             layout="fixed"
             
             />
 
             <p className='hidden lg:block whitespace-nowrap font-semibold pr-3'>{user.displayName}</p>
        </div>
-
-            <ChevronDownIcon className='icon'/>
         </div>
+        <SignOut/>
     </div>
   )
 }

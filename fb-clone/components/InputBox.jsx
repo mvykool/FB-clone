@@ -112,14 +112,24 @@ function InputBox() {
                     <p className='text-xs text-red-500 text-center'>Remove</p>
                 </div>
             )}
+            <div className='mt-5 sm:mt-6'>
+            <button type='button' 
+                onClick={uploadPost}
+                disabled={!inputVal}
+                className='hidden xl:inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 sm:text.sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
+                Submit
+              </button>
+            </div>
         </div>
+            
+        {/**mobile button */}
 
         <div className='mt-5 sm:mt-6'>
             <button type='button' 
                 onClick={uploadPost}
                 disabled={!inputVal}
-                className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-red-500 sm:text.sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
-                upload
+                className='xl:hidden inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 sm:text.sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
+                Submit
               </button>
             </div>
 
